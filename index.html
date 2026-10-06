@@ -222,6 +222,10 @@
     display: grid; grid-template-columns: .95fr 1.05fr; overflow: hidden; box-shadow: var(--shadow);
   }
   .boxes-art { min-height: 420px; padding: 32px; display: grid; place-items: center; }
+  .boxes-photo { position: relative; margin: 0; min-height: 460px; background: var(--surface-2); }
+  .boxes-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 45%; }
+  .boxes-photo .box-q { right: 22px; top: 22px; z-index: 1; }
+  [data-theme="dark"] .boxes-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 70%, rgb(29 27 32 / .35)); pointer-events: none; }
   .stack { position: relative; width: min(100%, 340px); aspect-ratio: 1; z-index: 1; }
   .box {
     position: absolute; border-radius: 10px; display: grid; place-items: center; text-align: center;
@@ -250,6 +254,10 @@
   .gallery figure { margin: 0; border-radius: 14px; overflow: hidden; background: var(--surface-2); }
   .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.16,1,.3,1); }
   .gallery figure:hover img { transform: scale(1.03); }
+  .gallery .night { display: none; }
+  [data-theme="dark"] .gallery .night { display: block; }
+  [data-theme="dark"] .gallery .day { display: none; }
+  [data-theme="dark"] .gallery figure { box-shadow: 0 0 0 1px rgb(181 131 255 / .22), 0 0 40px -18px var(--glow); }
   .g-1 { grid-row: span 2; }
   .g-2 { grid-column: span 2; }
   .why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
@@ -294,6 +302,7 @@
     .c-frias, .c-dulces { grid-column: span 1; }
     .c-basicos { grid-column: span 2; }
     .boxes-art { min-height: 300px; }
+    .boxes-photo { min-height: 380px; }
     .boxes-copy { padding: 36px 28px; }
     .map { min-height: 340px; }
     .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: none; grid-auto-rows: 180px; }
@@ -444,14 +453,10 @@
   <section class="boxes" id="cajas">
     <div class="wrap">
       <div class="boxes-panel reveal">
-        <div class="boxes-art wall" aria-hidden="true">
-          <div class="stack">
-            <div class="box box-a"><span>AMAZON</span></div>
-            <div class="box box-b"><span>TARGET</span></div>
-            <div class="box box-c"><span>SORPRESA</span></div>
-            <div class="box-q">?</div>
-          </div>
-        </div>
+        <figure class="boxes-photo">
+          <img src="img/cajas.jpg" alt="Cajas de Amazon apiladas en La Parada" loading="lazy" width="720" height="1280">
+          <div class="box-q" aria-hidden="true">?</div>
+        </figure>
         <div class="boxes-copy">
           <span class="eyebrow">Nuevo en La Parada</span>
           <h2>Cajas de Amazon y Target, aquí mismo.</h2>
@@ -474,10 +479,10 @@
       <h2 class="reveal">Visita nuestra tienda.</h2>
       <p class="lead reveal" style="--i:1">Así nos vas a encontrar cuando pases por el surtidor.</p>
       <div class="gallery">
-        <figure class="g-1 reveal"><img src="img/interior-2.jpg" alt="Interior de La Parada con pared de ladrillo, estantes de madera y heladeras" loading="lazy" width="1600" height="900"></figure>
-        <figure class="g-2 reveal" style="--i:1"><img src="img/interior-1.jpg" alt="Estante de licores con luz neón y góndola de bebidas" loading="lazy" width="1600" height="900"></figure>
-        <figure class="reveal" style="--i:2"><img src="img/entrada.jpg" alt="Mesas y sillas en la entrada de la tienda" loading="lazy" width="1600" height="900"></figure>
-        <figure class="reveal" style="--i:3"><img src="img/exterior.jpg" alt="Frente de La Parada en el Surtidor G&G" loading="lazy" width="1600" height="900"></figure>
+        <figure class="g-1 reveal"><img class="day" src="img/interior-2.jpg" alt="Interior de La Parada con pared de ladrillo, estantes de madera y heladeras" loading="lazy" width="1600" height="900"><img class="night" src="img/noche-interior-1.jpg" alt="Interior de La Parada de noche con luces neón moradas, ladrillo y estantes" loading="lazy" width="1600" height="900"></figure>
+        <figure class="g-2 reveal" style="--i:1"><img class="day" src="img/interior-1.jpg" alt="Estante de licores con luz neón y góndola de bebidas" loading="lazy" width="1600" height="900"><img class="night" src="img/noche-interior-2.jpg" alt="Snacks, bebidas y heladeras iluminadas de noche en La Parada" loading="lazy" width="1600" height="900"></figure>
+        <figure class="reveal" style="--i:2"><img class="day" src="img/entrada.jpg" alt="Mesas y sillas en la entrada de la tienda" loading="lazy" width="1600" height="900"><img class="night" src="img/noche-moto.jpg" alt="Moto de madera decorativa en la entrada de la tienda de noche" loading="lazy" width="1600" height="900"></figure>
+        <figure class="reveal" style="--i:3"><img class="day" src="img/exterior.jpg" alt="Frente de La Parada en el Surtidor G&G" loading="lazy" width="1600" height="900"><img class="night" src="img/noche-frente.jpg" alt="Frente de La Parada de noche con luces azules en el Surtidor G&amp;G" loading="lazy" width="1600" height="971"></figure>
       </div>
       <div class="why">
         <div class="reveal"><i class="ph-fill ph-gas-pump"></i><p><b>Dentro del surtidor</b><span>Estacionas, entras y listo.</span></p></div>
